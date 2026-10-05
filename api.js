@@ -1,4 +1,9 @@
 // ===== 1. API URL and Elements =====
+// NOTE: JSONPlaceholder is a fake API — it does not really store or delete notes.
+// After POST, the new note appears in the UI but disappears on refresh.
+// After DELETE, the note is removed from the UI even though the fake server
+// does not actually delete anything. In a real backend, both would persist.
+
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 const loadBtn = document.querySelector("#load-btn");
@@ -48,12 +53,18 @@ function renderNotes(notes) {
         const body = document.createElement("p");
         body.textContent = note.body;
 
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.addEventListener("click", function () {
+            deleteNote(note.id, li);
+        });
+
         li.appendChild(title);
         li.appendChild(body);
+        li.appendChild(deleteBtn);
         notesList.appendChild(li);
     });
 }
-
 // ===== 5. Load Notes (GET) =====
 async function loadNotes() {
     loadBtn.disabled = true;
@@ -123,6 +134,7 @@ async function createNote(event) {
 
         li.appendChild(heading);
         li.appendChild(paragraph);
+        
 
         notesList.prepend(li);
 
@@ -142,7 +154,27 @@ async function createNote(event) {
         submitBtn.disabled = false;
     }
 }
+// ===== 8. Delete Note (DELETE) =====
+async function deleteNote(id, li) {
+    // Disable the button on that card
+    const btn = li.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Deleting...";
 
+    try {
+        await request(API_URL + "/" + id, {
+            method: "DELETE"
+        });
+
+        // Remove the card from the page
+        li.remove();
+        showStatus("Note deleted.", "success");
+    } catch (error) {
+        showStatus("Delete failed: " + error.message, "error");
+        btn.disabled = false;
+        btn.textContent = "Delete";
+    }
+}
 // ===== 6. Button Click =====
 loadBtn.addEventListener("click", loadNotes);
 form.addEventListener("submit", createNote);
