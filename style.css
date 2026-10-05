@@ -1,0 +1,146 @@
+/* ===== Reset and Base ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f6f8;
+    color: #333;
+}
+
+/* ===== Header ===== */
+header {
+    background: #1a73e8;
+    color: white;
+    padding: 24px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin: 6px 0 0 0;
+    opacity: 0.9;
+}
+
+/* ===== Main Column ===== */
+main {
+    max-width: 700px;
+    margin: 24px auto;
+    padding: 0 20px;
+}
+
+section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    margin-top: 0;
+    color: #1a73e8;
+}
+
+/* ===== Buttons ===== */
+button {
+    padding: 10px 20px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s;
+}
+
+button:hover:not(:disabled) {
+    background: #1557b0;
+}
+
+button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+/* ===== Form ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+form input,
+form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+/* ===== Status Messages ===== */
+#status,
+#form-status {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.status-success {
+    color: green;
+}
+
+.status-error {
+    color: red;
+}
+
+.status-loading {
+    color: #666;
+}
+
+/* ===== Notes List ===== */
+#notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#notes-list li {
+    background: #fafafa;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 6px solid #1a73e8;
+}
+
+#notes-list h3 {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+}
+
+#notes-list p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 14px;
+}
